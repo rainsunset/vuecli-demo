@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>localStorage</title>
+</head>
+<body>
+    <div id="app">
+        <h1>浏览器支持localstorage</h1>
+		<span id="span1"><span>
+    </div>
+
+    <script>
+	if(!window.localStorage){
+		alert("浏览器不支持localstorage");
+        var a=document.getElementById("app");
+		a.innerHTML="<h1>浏览器不支持localstorage</h1>";
+    }else{
+		var storage=window.localStorage;
+		//写入a字段
+		storage["a"]= 666 ;
+		//写入b字段
+		storage.a= 777;
+		//写入c字段
+		storage.setItem("c",3);
+		console.log(typeof storage["a"]);
+		console.log(typeof storage["b"]);
+		console.log(typeof storage["c"]);
+		var app=document.getElementById("app");		
+		var h1 = document.createElement("h1");
+		var content = document.createTextNode("页面加载前:"+storage["a"]+"")
+		h1.appendChild(content);
+		app.appendChild(h1);
+		
+    }
+        
+	window.onload = function(){
+		console.log("111");
+		var storage=window.localStorage;
+		var app=document.getElementById("app");		
+		var h2 = document.createElement("h1");
+		var content2 = document.createTextNode("页面加载完成:"+storage["c"]+"")
+		h2.appendChild(content2);
+		app.appendChild(h2);
+	}
+    </script>
+</body>
+</html>
